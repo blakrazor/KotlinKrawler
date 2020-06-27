@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">KotlinKrawler</string>
+    <string name="button_text_load_game">Load Game</string>
+    <string name="button_text_new_game">New Game</string>
+    <string name="pb_text_user_health">Your Health:</string>
+    <string name="pb_text_opponent_health">Opponent Health:</string>
+</resources>
