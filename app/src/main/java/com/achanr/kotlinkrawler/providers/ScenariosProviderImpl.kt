@@ -48,12 +48,19 @@ class ScenariosProviderImpl : ScenariosProvider {
 
         for (i in 0 until scenarioDecisionsArray.length()) {
             val scenarioDecisionObject = scenarioDecisionsArray.getJSONObject(i)
+            val text = scenarioDecisionObject.getString("text")
+            val successChance = scenarioDecisionObject.getDouble("successChance")
+            val successResult =
+                parseScenarioDecisionResultObject(scenarioDecisionObject.getJSONObject("successResult"))
+            val failureResult = if (successChance < 1.0) parseScenarioDecisionResultObject(
+                scenarioDecisionObject.getJSONObject("failureResult")
+            ) else null
             scenarioDecisions.add(
                 ScenarioDecision(
-                    scenarioDecisionObject.getString("text"),
-                    scenarioDecisionObject.getDouble("successChance"),
-                    parseScenarioDecisionResultObject(scenarioDecisionObject.getJSONObject("successResult")),
-                    parseScenarioDecisionResultObject(scenarioDecisionObject.getJSONObject("failureResult"))
+                    text,
+                    successChance,
+                    successResult,
+                    failureResult
                 )
             )
         }

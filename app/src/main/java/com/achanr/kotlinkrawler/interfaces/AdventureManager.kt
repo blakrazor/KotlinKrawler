@@ -2,16 +2,19 @@ package com.achanr.kotlinkrawler.interfaces
 
 import android.content.Context
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.achanr.kotlinkrawler.models.*
 
 interface AdventureManager {
+    val decisions: LiveData<List<ScenarioDecision>>
+
     fun startAdventure(
         context: Context,
         seed: Int,
         scenarioType: ScenarioType,
         difficulty: Difficulty,
         sessionLength: Int
-    ) : LiveData<Adventure>
+    ): LiveData<Adventure>
 
-    fun makeDecision(decision: Int)
+    fun makeDecision(scenarioDecision: ScenarioDecision)
 }

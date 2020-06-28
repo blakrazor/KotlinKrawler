@@ -1,8 +1,8 @@
 package com.achanr.kotlinkrawler.models
 
-class ScenarioDecision(
+data class ScenarioDecision(
     val text: String,
     val successChance: Double,
-    val successResult: ScenarioDecisionResult,
-    val failureResult: ScenarioDecisionResult
+    val successResult: ScenarioDecisionResult?,
+    val failureResult: ScenarioDecisionResult?
 )

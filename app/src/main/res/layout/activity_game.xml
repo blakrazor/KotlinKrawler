@@ -137,63 +137,33 @@
             android:id="@+id/rvEventLog"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+            tools:itemCount="20"
+            android:layout_margin="4dp"
+            android:background="@drawable/border_event_log"
+            tools:listitem="@layout/item_view_event_log">
+
+        </androidx.recyclerview.widget.RecyclerView>
 
         <LinearLayout
-            android:id="@+id/linearLayout3"
-            style="?android:attr/buttonBarStyle"
+            android:id="@+id/linearLayout"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="150dp"
             android:orientation="vertical"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
-            <Button
-                android:id="@+id/btnOptionOne"
-                style="?android:attr/buttonBarButtonStyle"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvButtons"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_weight="1"
-                android:onClick="@{() -> viewModel.onDecisionSelected(1)}"
-                android:text="@{viewModel.decisionOne.text}"
-                android:visibility="@{viewModel.decisionOne != null ? View.VISIBLE : View.GONE}"
-                tools:text="Option #1" />
-
-            <Button
-                android:id="@+id/btnOptionTwo"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_weight="1"
-                android:onClick="@{() -> viewModel.onDecisionSelected(2)}"
-                android:text="@{viewModel.decisionTwo.text}"
-                android:visibility="@{viewModel.decisionTwo != null ? View.VISIBLE : View.GONE}"
-                tools:text="Option #2" />
-
-            <Button
-                android:id="@+id/btnOptionThree"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_weight="1"
-                android:onClick="@{() -> viewModel.onDecisionSelected(3)}"
-                android:text="@{viewModel.decisionThree.text}"
-                android:visibility="@{viewModel.decisionThree != null ? View.VISIBLE : View.GONE}"
-                tools:text="Option #3" />
+                android:layout_height="match_parent"
+                app:layout_constrainedHeight="true"
+                tools:itemCount="15"
+                tools:listitem="@layout/item_view_decision_button" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

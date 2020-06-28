@@ -1,4 +1,4 @@
-package com.achanr.kotlinkrawler.views
+package com.achanr.kotlinkrawler.views.adapters
 
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.achanr.kotlinkrawler.threading.AppExecutors
+import com.achanr.kotlinkrawler.views.viewholders.DataBoundViewHolder
 
 abstract class DataBoundListAdapter<T>(
     appExecutors: AppExecutors,
@@ -19,7 +20,10 @@ abstract class DataBoundListAdapter<T>(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataBoundViewHolder {
         val binding = createBinding(parent, viewType)
-        val viewHolder = DataBoundViewHolder(binding)
+        val viewHolder =
+            DataBoundViewHolder(
+                binding
+            )
         binding.lifecycleOwner = viewHolder
         viewHolder.markCreated()
         viewHolders.add(viewHolder)

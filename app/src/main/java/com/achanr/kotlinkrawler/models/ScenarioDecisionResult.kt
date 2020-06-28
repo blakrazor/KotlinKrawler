@@ -1,6 +1,6 @@
 package com.achanr.kotlinkrawler.models
 
-class ScenarioDecisionResult(
+data class ScenarioDecisionResult(
     val text: String,
     val changeInGold: Int
 )

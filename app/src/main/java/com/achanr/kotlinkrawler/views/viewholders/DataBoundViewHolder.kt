@@ -1,4 +1,4 @@
-package com.achanr.kotlinkrawler.views
+package com.achanr.kotlinkrawler.views.viewholders
 
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Lifecycle

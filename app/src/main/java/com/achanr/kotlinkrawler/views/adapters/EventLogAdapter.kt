@@ -1,4 +1,4 @@
-package com.achanr.kotlinkrawler.views
+package com.achanr.kotlinkrawler.views.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -27,7 +27,8 @@ class EventLogAdapter(
     override fun createBinding(parent: ViewGroup, viewType: Int): ViewDataBinding {
         return DataBindingUtil.inflate(
             LayoutInflater.from(parent.context),
-            R.layout.item_view_event_log, parent,
+            R.layout.item_view_event_log,
+            parent,
             false
         )
     }
@@ -35,8 +36,12 @@ class EventLogAdapter(
     override fun bind(binding: ViewDataBinding, item: AdventureEvent) {
         when (binding) {
             is ItemViewEventLogBinding -> {
-                binding.adventureEvent = item
+                binding.mainText = "> ${item.mainText}"
             }
         }
+    }
+
+    override fun submitList(list: List<AdventureEvent>?) {
+        super.submitList(list?.let { ArrayList(it) })
     }
 }
