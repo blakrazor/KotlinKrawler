@@ -20,8 +20,12 @@
         },
         {
           "text": "Ignore",
-          "successChance": 0.8,
+          "successChance": 1.0,
           "successResult": {
+            "text": "You decide to ignore it. He'll probably be fine on his own.",
+            "changeInGold": 0
+          },
+          "failureResult": {
             "text": "You decide to ignore it. He'll probably be fine on his own.",
             "changeInGold": 0
           }
