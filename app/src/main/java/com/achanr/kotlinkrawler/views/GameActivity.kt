@@ -1,9 +1,13 @@
 package com.achanr.kotlinkrawler.views
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import com.achanr.kotlinkrawler.R
+import com.achanr.kotlinkrawler.databinding.ActivityGameBinding
+import com.achanr.kotlinkrawler.factories.ScenarioFactoryImpl
+import com.achanr.kotlinkrawler.managers.AdventureManagerImpl
 import com.achanr.kotlinkrawler.viewmodels.GameViewModel
 
 class GameActivity : AppCompatActivity() {
@@ -12,6 +16,8 @@ class GameActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_game)
+        val binding: ActivityGameBinding =
+            DataBindingUtil.setContentView(this, R.layout.activity_game)
+        binding.viewModel = viewModel
     }
 }

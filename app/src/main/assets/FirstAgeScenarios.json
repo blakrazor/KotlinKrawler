@@ -1,0 +1,32 @@
+{
+  "type": "FirstAge",
+  "scenarios": [
+    {
+      "title": "Old Man",
+      "difficulty": 0,
+      "description": "You see an old man attempting to cross the road unsuccessfully. It is too busy for him to navigate safely.",
+      "decisions": [
+        {
+          "text": "Help him cross the road",
+          "successChance": 0.8,
+          "successResult": {
+            "text": "You help the old man cross the road safely. He tosses you a coin as a token of appreciation.",
+            "changeInGold": 1
+          },
+          "failureResult": {
+            "text": "You approach the old man, but he immediately thinks you are mugging him and runs off.",
+            "changeInGold": 0
+          }
+        },
+        {
+          "text": "Ignore",
+          "successChance": 0.8,
+          "successResult": {
+            "text": "You decide to ignore it. He'll probably be fine on his own.",
+            "changeInGold": 0
+          }
+        }
+      ]
+    }
+  ]
+}

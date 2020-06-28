@@ -1,9 +1,9 @@
 package com.achanr.kotlinkrawler.views
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.achanr.kotlinkrawler.R
 import com.achanr.kotlinkrawler.databinding.ActivityMainMenuBinding
@@ -17,7 +17,8 @@ class MainMenuActivity : AppCompatActivity(), MainMenuNavigator {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding: ActivityMainMenuBinding = DataBindingUtil.setContentView(this, R.layout.activity_main_menu)
+        val binding: ActivityMainMenuBinding =
+            DataBindingUtil.setContentView(this, R.layout.activity_main_menu)
         binding.viewModel = viewModel
     }
 

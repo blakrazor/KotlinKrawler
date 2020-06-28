@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
+
     <data>
-        <variable name="viewModel" type="com.achanr.kotlinkrawler.viewmodels.MainMenuViewModel"/>
+
+        <variable
+            name="viewModel"
+            type="com.achanr.kotlinkrawler.viewmodels.MainMenuViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -27,13 +31,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
+            android:onClick="@{() -> viewModel.onClickNewGameButton()}"
             android:text="@string/button_text_new_game"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView"
-            app:layout_constraintVertical_bias="0.62"
-            android:onClick="@{() -> viewModel.onClickNewGameButton()}" />
+            app:layout_constraintVertical_bias="0.62" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
