@@ -1,28 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <import type="android.view.View" />
 
         <variable
             name="viewModel"
             type="com.achanr.kotlinkrawler.viewmodels.GameViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".views.GameActivity">
 
         <TextView
+            android:id="@+id/txtGoldCounter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@{viewModel.goldCount}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Gold: 0" />
+
+        <TextView
             android:id="@+id/txtEventTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="64dp"
+            android:layout_marginTop="16dp"
+            android:text="@{viewModel.adventure.scenario.title}"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtGoldCounter"
             tools:text="Monster!" />
 
         <ScrollView
@@ -43,61 +58,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="16dp"
+                    android:text="@{viewModel.adventure.scenario.description}"
                     tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel fermentum enim, eget molestie massa. Suspendisse ut iaculis eros. Cras condimentum elementum mi, ac fringilla orci maximus a. In aliquam molestie nunc, nec fringilla purus. Vestibulum eleifend pulvinar purus non vulputate. Cras dignissim malesuada mi, at malesuada lectus pretium nec. Pellentesque non sem quis libero facilisis bibendum. " />
             </LinearLayout>
         </ScrollView>
 
         <LinearLayout
             android:id="@+id/linearLayout2"
-            style="?android:attr/buttonBarStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <Button
-                android:id="@+id/btnOptionOne"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_weight="1"
-                tools:text="Option #1" />
-
-            <Button
-                android:id="@+id/btnOptionTwo"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_weight="1"
-                tools:text="Option #2" />
-
-            <Button
-                android:id="@+id/btnOptionThree"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_weight="1"
-                tools:text="Option #3" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayout3"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
             android:orientation="vertical"
             android:paddingStart="16dp"
             android:paddingTop="8dp"
             android:paddingEnd="16dp"
             android:paddingBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+            android:visibility="@{viewModel.adventure.scenario.isBattle ? View.VISIBLE : View.GONE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/scrollView2"
@@ -156,10 +131,69 @@
                 android:progress="100"
                 android:progressTint="#E91E63" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvEventLog"
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvEventLog"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            style="?android:attr/buttonBarStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <Button
+                android:id="@+id/btnOptionOne"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_weight="1"
+                android:onClick="@{() -> viewModel.onDecisionSelected(1)}"
+                android:text="@{viewModel.decisionOne.text}"
+                android:visibility="@{viewModel.decisionOne != null ? View.VISIBLE : View.GONE}"
+                tools:text="Option #1" />
+
+            <Button
+                android:id="@+id/btnOptionTwo"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_weight="1"
+                android:onClick="@{() -> viewModel.onDecisionSelected(2)}"
+                android:text="@{viewModel.decisionTwo.text}"
+                android:visibility="@{viewModel.decisionTwo != null ? View.VISIBLE : View.GONE}"
+                tools:text="Option #2" />
+
+            <Button
+                android:id="@+id/btnOptionThree"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_weight="1"
+                android:onClick="@{() -> viewModel.onDecisionSelected(3)}"
+                android:text="@{viewModel.decisionThree.text}"
+                android:visibility="@{viewModel.decisionThree != null ? View.VISIBLE : View.GONE}"
+                tools:text="Option #3" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

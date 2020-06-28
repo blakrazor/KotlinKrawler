@@ -4,4 +4,5 @@
     <string name="button_text_new_game">New Game</string>
     <string name="pb_text_user_health">Your Health:</string>
     <string name="pb_text_opponent_health">Opponent Health:</string>
+    <string name="txt_gold_count">Gold: %1$d</string>
 </resources>

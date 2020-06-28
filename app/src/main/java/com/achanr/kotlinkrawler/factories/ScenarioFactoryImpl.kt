@@ -1,17 +1,22 @@
 package com.achanr.kotlinkrawler.factories
 
-import com.achanr.kotlinkrawler.models.Scenario
 import com.achanr.kotlinkrawler.interfaces.ScenarioFactory
 import com.achanr.kotlinkrawler.models.Difficulty
+import com.achanr.kotlinkrawler.models.Scenario
 import kotlin.random.Random
 
-class ScenarioFactoryImpl(private val allScenarios: List<Scenario>) :
-    ScenarioFactory {
+class ScenarioFactoryImpl : ScenarioFactory {
+    private var allScenarios: List<Scenario> = emptyList()
+
     private val veryEasyScenarios: List<Scenario> by lazy { allScenarios.filter { it.difficulty == Difficulty.VeryEasy } }
     private val easyScenarios: List<Scenario> by lazy { allScenarios.filter { it.difficulty == Difficulty.Easy } }
     private val mediumScenarios: List<Scenario> by lazy { allScenarios.filter { it.difficulty == Difficulty.Medium } }
     private val hardScenarios: List<Scenario> by lazy { allScenarios.filter { it.difficulty == Difficulty.Hard } }
     private val veryHardScenarios: List<Scenario> by lazy { allScenarios.filter { it.difficulty == Difficulty.VeryHard } }
+
+    override fun initialize(scenarios: List<Scenario>) {
+        allScenarios = scenarios
+    }
 
     override fun createNewScenario(
         random: Random,
@@ -65,14 +70,18 @@ class ScenarioFactoryImpl(private val allScenarios: List<Scenario>) :
         thirdList: List<Scenario> = targetList,
         count: Int = 0
     ): Scenario {
-        val chosenScenarioList: List<Scenario> = when (random.nextInt(1, 10)) {
-            in 4..10 /* 70% */ -> targetList
-            2, 3 /* 20% */ -> secondList
-            1 /* 10% */ -> thirdList
+        val chosenScenarioList: List<Scenario> = when (random.nextInt(0, 10)) {
+            in 3..9 /* 70% */ -> targetList
+            1, 2 /* 20% */ -> secondList
+            0 /* 10% */ -> thirdList
             else -> targetList
         }
 
-        val chosenScenario = chosenScenarioList[random.nextInt(chosenScenarioList.size) - 1]
+        if (chosenScenarioList.size == 1) {
+            return chosenScenarioList[0];
+        }
+
+        val chosenScenario = chosenScenarioList[random.nextInt(chosenScenarioList.size)]
         if (chosenScenario in completedScenarios && count < 2) {
             return getProbableScenario(
                 random,

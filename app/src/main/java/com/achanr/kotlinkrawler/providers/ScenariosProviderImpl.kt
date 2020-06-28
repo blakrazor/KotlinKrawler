@@ -38,6 +38,7 @@ class ScenariosProviderImpl : ScenariosProvider {
             scenarioObject.getString("title"),
             Difficulty.fromInt(scenarioObject.getInt("difficulty")),
             scenarioObject.getString("description"),
+            false,
             parseScenarioDecisionsArray(scenarioObject.getJSONArray("decisions"))
         )
     }
