@@ -4,7 +4,7 @@
     {
       "title": "Old Man",
       "difficulty": 0,
-      "description": "You see an old man attempting to cross the road unsuccessfully. It is too busy for him to navigate safely.",
+      "description": "You spot an old man attempting to cross the road unsuccessfully. It is too busy for him to navigate safely.",
       "decisions": [
         {
           "text": "Help him cross the road",
@@ -22,15 +22,72 @@
           "text": "Ignore",
           "successChance": 1.0,
           "successResult": {
-            "text": "You decide to ignore it. He'll probably be fine on his own.",
-            "changeInGold": 0
-          },
-          "failureResult": {
-            "text": "You decide to ignore it. He'll probably be fine on his own.",
+            "text": "You decide to ignore him. He'll probably be fine on his own.",
             "changeInGold": 0
           }
         }
       ]
+    },
+    {
+      "title": "Man's Best Friend",
+      "difficulty": 1,
+      "description": "You suddenly hear barking as you turn the corner. A group of wild dogs seem to be causing mayhem in the streets.",
+      "decisions": [
+        {
+          "text": "Run away",
+          "successChance": 0.7,
+          "successResult": {
+            "text": "You attempt to flee in the opposite direction. The dogs didn't notice you. You are safe.",
+            "changeInGold": 0
+          },
+          "failureResult": {
+            "text": "You attempt to flee, but the dogs noticed you. Frantically running, you accidentally drop some gold. The dogs are distracted by it and you quickly lose them in an alley.",
+            "changeInGold": -2
+          }
+        },
+        {
+          "text": "Pet the dogs",
+          "successChance": 0.3,
+          "successResult": {
+            "text": "You walk up to the group of dogs who are actually very friendly. After playing together for some time, they bring you a gift before heading on their way.",
+            "changeInGold": 4
+          },
+          "failureResult": {
+            "text": "You walk up to the group of dogs, but they seem aggressive. It seems it is too late to turn back now.",
+            "changeInGold": 0,
+            "isBattle": true
+          }
+        }
+      ],
+      "battleInfo": {
+        "name": "Pack of Wild Dogs",
+        "attack": 2,
+        "defense": 2,
+        "health": 60,
+        "reward": 5,
+        "successMessage": "The dogs are quickly dispatched by your overwhelming display. They leave behind some of their scraps which include some gold.",
+        "failureMessage": "You are overwhelmed by the dogs with no chance of escape. What a 'ruff' decision you made.",
+        "strongAttackMessages": [
+          "You get real big and intimidate the dogs which seems to work!",
+          "You throw a stick some distance away and one of the dogs gets distracted.",
+          "You tell the dogs they have been bad boys. This seems to be demoralized them.",
+          "You get down on all fours and act like a dog. The dogs seem to be very confused."
+        ],
+        "weakAttackMessages": [
+          "You try meow'ing towards the dogs. This seems to have only made them angrier.",
+          "You take some food out of bag and throw it to the dogs. They quickly devour it, but it looks like it only made them stronger.",
+          "You try to kick a dog, but you realize how horrible a decision that would be. So you decide to just give them a stern look.",
+          "You tell the dogs they have been good boys. The dogs don't buy it."
+        ],
+        "strongDefenseMessages": [
+          "You dodge most of their attacks and take minimal damage.",
+          "You use your bag to keep your distance, shielding you from their attacks."
+        ],
+        "weakDefenseMessages": [
+          "You are too slow and one of the dogs is able to bite your arm.",
+          "The dogs quickly outnumber you and you take damage."
+        ]
+      }
     }
   ]
 }

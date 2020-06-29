@@ -15,6 +15,7 @@ class GameViewModel : ViewModel() {
     var adventure: LiveData<Adventure>? = null
     var goldCount: LiveData<String>? = null
     var seedValue: LiveData<String>? = null
+    var isBattleScenario: LiveData<Boolean>? = null
     var decisions: LiveData<List<ScenarioDecision>>? = null
 
     private var adventureManager: AdventureManager? = null
@@ -51,6 +52,7 @@ class GameViewModel : ViewModel() {
                     a.seed
                 )
             }
+            isBattleScenario = Transformations.map(it) { a -> a.scenario.battleInfo != null }
         }
     }
 

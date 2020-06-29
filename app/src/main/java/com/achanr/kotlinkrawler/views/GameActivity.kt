@@ -1,6 +1,7 @@
 package com.achanr.kotlinkrawler.views
 
 import android.os.Bundle
+import android.os.Handler
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -50,11 +51,13 @@ class GameActivity : AppCompatActivity() {
             intent.getIntExtra(sessionLengthKey, SessionLength.Short.value)
         )
 
-        viewModel.adventure?.observe(this, Observer { eventLogAdapter.submitList(it.eventLog) })
-        viewModel.decisions?.observe(this, Observer {
-            decisionButtonAdapter.submitList(it)
-            binding.rvEventLog.smoothScrollToPosition(0)
+        viewModel.adventure?.observe(this, Observer {
+            eventLogAdapter.submitList(it.eventLog)
+            binding.rvEventLog.postDelayed({
+                binding.rvEventLog.smoothScrollToPosition(0)
+            }, 200)
         })
+        viewModel.decisions?.observe(this, Observer { decisionButtonAdapter.submitList(it) })
     }
 
     private fun setupAdapters(binding: ActivityGameBinding) {
