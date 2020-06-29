@@ -1,7 +1,7 @@
 ![Android CI](https://github.com/blakrazor/KotlinKrawler/workflows/Android%20CI/badge.svg)
 
 # KotlinKrawler
-Simple dungeon crawler-esque game written as an Android application to learn Kotlin basics.
+Simple dungeon crawler-esque game written as an Android application to learn basics about Kotlin, LiveData, Data Binding, and MVVM in Android.
 
 # Screenshots
 
