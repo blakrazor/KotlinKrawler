@@ -1,3 +1,5 @@
+![Android CI](https://github.com/blakrazor/KotlinKrawler/workflows/Android%20CI/badge.svg)
+
 # KotlinKrawler
 Simple dungeon crawler-esque game written as an Android application to learn Kotlin basics.
 
