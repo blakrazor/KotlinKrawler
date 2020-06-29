@@ -1,7 +1,9 @@
 package com.achanr.kotlinkrawler.models
 
-enum class ScenarioType(val value: Int, val filename: String) {
-    FirstAge(0, "FirstAgeScenarios.json");
+enum class SessionLength(val value: Int) {
+    Short(10),
+    Medium(20),
+    Long(30);
 
     companion object {
         fun fromInt(value: Int) = values().first { it.value == value }

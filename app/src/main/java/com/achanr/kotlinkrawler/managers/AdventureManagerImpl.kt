@@ -3,13 +3,16 @@ package com.achanr.kotlinkrawler.managers
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.achanr.kotlinkrawler.R
 import com.achanr.kotlinkrawler.interfaces.AdventureManager
 import com.achanr.kotlinkrawler.interfaces.ScenarioFactory
 import com.achanr.kotlinkrawler.interfaces.ScenariosProvider
 import com.achanr.kotlinkrawler.models.*
+import java.lang.IllegalStateException
 import kotlin.random.Random
 
 class AdventureManagerImpl(
+    context: Context,
     private val scenarioFactory: ScenarioFactory,
     private val scenariosProvider: ScenariosProvider
 ) : AdventureManager {
@@ -18,31 +21,32 @@ class AdventureManagerImpl(
     private val completedScenarios: MutableList<Scenario> = mutableListOf()
     private val currentEventLog: MutableList<AdventureEvent> = mutableListOf()
     private val continueDecisionResult: ScenarioDecision =
-        ScenarioDecision("Continue", 1.0, null, null)
+        ScenarioDecision(context.getString(R.string.btn_continue), 1.0, null, null)
 
     private var currentScenario: Scenario? = null
     private var currentPlayer: Player? = null
     private var currentDifficulty: Difficulty? = null
     private var seededRandom: Random? = null
+    private var currentSeed: Int? = null
 
     override val decisions: LiveData<List<ScenarioDecision>> = currentDecisions
 
-    override fun startAdventure(
-        context: Context,
+    override fun startNewAdventure(
         seed: Int,
         scenarioType: ScenarioType,
         difficulty: Difficulty,
         sessionLength: Int
     ): LiveData<Adventure> {
+        this.currentSeed = seed
         this.seededRandom = Random(seed)
         this.currentDifficulty = difficulty
         currentPlayer = Player(0)
 
         val scenarios: List<Scenario> =
-            scenariosProvider.getScenariosForType(context, scenarioType);
+            scenariosProvider.getScenariosForType(scenarioType);
         scenarioFactory.initialize(scenarios)
 
-        continueAdventure(seededRandom, currentPlayer, currentDifficulty)
+        continueAdventure(seededRandom, currentSeed, currentPlayer, currentDifficulty)
         return currentAdventure
     }
 
@@ -50,6 +54,7 @@ class AdventureManagerImpl(
         makeDecisionImpl(
             scenarioDecision,
             seededRandom,
+            currentSeed,
             currentPlayer,
             currentDifficulty,
             currentScenario,
@@ -59,6 +64,7 @@ class AdventureManagerImpl(
 
     private fun continueAdventure(
         random: Random?,
+        seed: Int?,
         player: Player?,
         difficulty: Difficulty?
     ) {
@@ -70,21 +76,22 @@ class AdventureManagerImpl(
                     completedScenarios
                 )
             currentEventLog.add(0, AdventureEvent(newScenario.description))
-            postAdventureUpdate(player, newScenario, newScenario.decisions.toList())
+            postAdventureUpdate(seed, player, newScenario, newScenario.decisions.toList())
         }
     }
 
     private fun makeDecisionImpl(
         scenarioDecision: ScenarioDecision,
         random: Random?,
+        seed: Int?,
         player: Player?,
         difficulty: Difficulty?,
         scenario: Scenario?,
         decisions: List<ScenarioDecision>?
     ) {
-        if (random != null && scenario != null && player != null && decisions != null) {
+        if (random != null && scenario != null && seed != null && player != null && decisions != null) {
             if (scenarioDecision == continueDecisionResult) {
-                continueAdventure(random, player, difficulty)
+                continueAdventure(random, seed, player, difficulty)
                 return
             }
 
@@ -99,22 +106,24 @@ class AdventureManagerImpl(
                 updatedPlayer = Player(player.goldCount + it.changeInGold)
             }
             completedScenarios.add(scenario)
-            postAdventureUpdate(updatedPlayer, scenario, listOf(continueDecisionResult))
+            postAdventureUpdate(seed, updatedPlayer, scenario, listOf(continueDecisionResult))
         }
     }
 
     private fun postAdventureUpdate(
+        seed: Int?,
         player: Player?,
         scenario: Scenario?,
         decisions: List<ScenarioDecision>
     ) {
-        if (player != null && scenario != null) {
+        if (seed != null && player != null && scenario != null) {
             currentPlayer = player
             currentScenario = scenario
 
             currentDecisions.postValue(decisions)
             currentAdventure.postValue(
                 Adventure(
+                    seed,
                     player,
                     scenario,
                     decisions,

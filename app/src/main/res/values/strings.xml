@@ -5,4 +5,9 @@
     <string name="pb_text_user_health">Your Health:</string>
     <string name="pb_text_opponent_health">Opponent Health:</string>
     <string name="txt_gold_count">Gold: %1$d</string>
+    <string name="txt_seed">Seed: %1$d</string>
+    <string name="txt_difficulty">Difficulty</string>
+    <string name="txt_session_length">Session Length</string>
+    <string name="btn_continue">Continue</string>
+    <string name="txt_random_seed">Random Seed (0..Integer.MAX)</string>
 </resources>

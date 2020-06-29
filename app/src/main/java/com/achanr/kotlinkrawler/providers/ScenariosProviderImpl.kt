@@ -6,17 +6,17 @@ import com.achanr.kotlinkrawler.models.*
 import org.json.JSONArray
 import org.json.JSONObject
 
-class ScenariosProviderImpl : ScenariosProvider {
+class ScenariosProviderImpl(private val context: Context) : ScenariosProvider {
 
-    override fun getScenariosForType(context: Context, scenarioType: ScenarioType): List<Scenario> {
+    override fun getScenariosForType(scenarioType: ScenarioType): List<Scenario> {
         val json: String = when (scenarioType) {
-            ScenarioType.FirstAge -> getJsonFromAsset(context, ScenarioType.FirstAge.filename)
+            ScenarioType.FirstAge -> getJsonFromAsset(ScenarioType.FirstAge.filename)
         }
 
         return parseScenariosFromJson(json)
     }
 
-    private fun getJsonFromAsset(context: Context, fileName: String): String {
+    private fun getJsonFromAsset(fileName: String): String {
         return context.assets.open(fileName).bufferedReader().use { it.readText() }
     }
 

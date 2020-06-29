@@ -17,27 +17,44 @@
         android:layout_height="match_parent"
         tools:context=".views.GameActivity">
 
-        <TextView
-            android:id="@+id/txtGoldCounter"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/layoutStatusArea"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:text="@{viewModel.goldCount}"
+            android:layout_margin="16dp"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Gold: 0" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/txtSeed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:text="@{viewModel.seedValue}"
+                tools:text="Seed: 123456" />
+
+            <TextView
+                android:id="@+id/txtGoldCounter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:text="@{viewModel.goldCount}"
+                tools:text="Gold: 0" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/txtEventTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:text="@{viewModel.adventure.scenario.title}"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtGoldCounter"
+            app:layout_constraintTop_toBottomOf="@+id/layoutStatusArea"
             tools:text="Monster!" />
 
         <ScrollView
@@ -137,13 +154,13 @@
             android:id="@+id/rvEventLog"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_margin="4dp"
+            android:background="@drawable/border_event_log"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
             tools:itemCount="20"
-            android:layout_margin="4dp"
-            android:background="@drawable/border_event_log"
             tools:listitem="@layout/item_view_event_log">
 
         </androidx.recyclerview.widget.RecyclerView>

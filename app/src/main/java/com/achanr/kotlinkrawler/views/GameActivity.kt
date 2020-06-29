@@ -11,6 +11,9 @@ import com.achanr.kotlinkrawler.R
 import com.achanr.kotlinkrawler.databinding.ActivityGameBinding
 import com.achanr.kotlinkrawler.factories.ScenarioFactoryImpl
 import com.achanr.kotlinkrawler.managers.AdventureManagerImpl
+import com.achanr.kotlinkrawler.models.Difficulty
+import com.achanr.kotlinkrawler.models.ScenarioType
+import com.achanr.kotlinkrawler.models.SessionLength
 import com.achanr.kotlinkrawler.providers.ScenariosProviderImpl
 import com.achanr.kotlinkrawler.threading.AppExecutors
 import com.achanr.kotlinkrawler.viewmodels.GameViewModel
@@ -18,6 +21,12 @@ import com.achanr.kotlinkrawler.views.adapters.DecisionButtonAdapter
 import com.achanr.kotlinkrawler.views.adapters.EventLogAdapter
 
 class GameActivity : AppCompatActivity() {
+    companion object {
+        const val seedKey: String = "seed_key"
+        const val themeKey: String = "theme_key"
+        const val difficultyKey: String = "difficulty_key"
+        const val sessionLengthKey: String = "session_length_key"
+    }
 
     private val viewModel: GameViewModel by viewModels()
     private lateinit var eventLogAdapter: EventLogAdapter
@@ -34,7 +43,11 @@ class GameActivity : AppCompatActivity() {
 
         viewModel.setupAdventure(
             this,
-            AdventureManagerImpl(ScenarioFactoryImpl(), ScenariosProviderImpl())
+            AdventureManagerImpl(this, ScenarioFactoryImpl(), ScenariosProviderImpl(this)),
+            intent.getIntExtra(seedKey, 0),
+            intent.getIntExtra(themeKey, ScenarioType.FirstAge.value),
+            intent.getIntExtra(difficultyKey, Difficulty.VeryEasy.value),
+            intent.getIntExtra(sessionLengthKey, SessionLength.Short.value)
         )
 
         viewModel.adventure?.observe(this, Observer { eventLogAdapter.submitList(it.eventLog) })

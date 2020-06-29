@@ -8,8 +8,7 @@ import com.achanr.kotlinkrawler.models.*
 interface AdventureManager {
     val decisions: LiveData<List<ScenarioDecision>>
 
-    fun startAdventure(
-        context: Context,
+    fun startNewAdventure(
         seed: Int,
         scenarioType: ScenarioType,
         difficulty: Difficulty,

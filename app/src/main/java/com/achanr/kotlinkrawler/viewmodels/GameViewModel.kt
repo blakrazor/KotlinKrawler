@@ -14,19 +14,26 @@ import com.achanr.kotlinkrawler.models.ScenarioType
 class GameViewModel : ViewModel() {
     var adventure: LiveData<Adventure>? = null
     var goldCount: LiveData<String>? = null
+    var seedValue: LiveData<String>? = null
     var decisions: LiveData<List<ScenarioDecision>>? = null
 
     private var adventureManager: AdventureManager? = null
 
-    fun setupAdventure(context: Context, adventureManager: AdventureManager) {
+    fun setupAdventure(
+        context: Context,
+        adventureManager: AdventureManager,
+        seed: Int,
+        scenarioType: Int,
+        difficulty: Int,
+        sessionLength: Int
+    ) {
         this.adventureManager = adventureManager
 
-        adventure = adventureManager.startAdventure(
-            context,
-            12345,
-            ScenarioType.FirstAge,
-            Difficulty.VeryEasy,
-            10
+        adventure = adventureManager.startNewAdventure(
+            seed,
+            ScenarioType.fromInt(scenarioType),
+            Difficulty.fromInt(difficulty),
+            sessionLength
         )
 
         decisions = adventureManager.decisions
@@ -36,6 +43,12 @@ class GameViewModel : ViewModel() {
                 context.getString(
                     R.string.txt_gold_count,
                     a.player.goldCount
+                )
+            }
+            seedValue = Transformations.map(it) { a ->
+                context.getString(
+                    R.string.txt_seed,
+                    a.seed
                 )
             }
         }
