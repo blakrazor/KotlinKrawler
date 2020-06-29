@@ -1,5 +1,5 @@
 # KotlinKrawler
-Simple game written as an Android application to learn Kotlin basics
+Simple dungeon crawler-esque game written as an Android application to learn Kotlin basics.
 
 # Screenshots
 
