@@ -36,7 +36,7 @@ class EventLogAdapter(
     override fun bind(binding: ViewDataBinding, item: AdventureEvent) {
         when (binding) {
             is ItemViewEventLogBinding -> {
-                binding.mainText = "> ${item.mainText}"
+                binding.adventureEvent = item
             }
         }
     }

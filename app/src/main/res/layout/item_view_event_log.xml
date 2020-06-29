@@ -4,9 +4,10 @@
 
     <data>
 
+        <import type="android.graphics.Color" />
         <variable
-            name="mainText"
-            type="String" />
+            name="adventureEvent"
+            type="com.achanr.kotlinkrawler.models.AdventureEvent" />
     </data>
 
     <LinearLayout
@@ -22,7 +23,8 @@
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{mainText}"
+            android:text="@{String.format(@string/txt_event_log, adventureEvent.mainText)}"
+            android:textColor="@{Color.parseColor(adventureEvent.type.hexColor)}"
             tools:text="> This is an event in the event log" />
     </LinearLayout>
 </layout>

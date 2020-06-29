@@ -6,9 +6,21 @@
     <string name="pb_text_opponent_health">Opponent Health:</string>
     <string name="txt_gold_count">Gold: %1$d</string>
     <string name="txt_seed">Seed: %1$d</string>
+    <string name="txt_opp_name">Name: %1$s</string>
+    <string name="txt_opp_desc">Description: %1$s</string>
+    <string name="txt_opp_type">Type: %1$s</string>
+    <string name="txt_battle">Battle</string>
     <string name="txt_difficulty">Difficulty</string>
     <string name="txt_session_length">Session Length</string>
     <string name="btn_continue">Continue</string>
+    <string name="btn_fight">Fight</string>
+    <string name="btn_attack">Attack</string>
+    <string name="btn_defend">Defend</string>
+    <string name="btn_start_over">Start Over</string>
     <string name="txt_random_seed">Random Seed (0..Integer.MAX)</string>
     <string name="txt_theme">Theme</string>
+    <string name="txt_all_defend">Nothing happens.</string>
+    <string name="txt_event_log">> %1$s</string>
+    <string name="txt_game_over_title">Game Over</string>
+    <string name="txt_game_over_description">You made it through %1$d events and came out with %2$d gold and %3$d/%4$d health.</string>
 </resources>

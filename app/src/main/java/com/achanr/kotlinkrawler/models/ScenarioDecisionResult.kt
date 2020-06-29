@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 data class ScenarioDecisionResult(
     val text: String,
     val changeInGold: Int,
-    val isBattle: Boolean = false
+    val battleId: Int? = null
 )

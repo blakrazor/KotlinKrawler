@@ -7,6 +7,7 @@ import com.achanr.kotlinkrawler.models.*
 
 interface AdventureManager {
     val decisions: LiveData<List<ScenarioDecision>>
+    val opponentHealth: LiveData<Int>
 
     fun startNewAdventure(
         seed: Int,

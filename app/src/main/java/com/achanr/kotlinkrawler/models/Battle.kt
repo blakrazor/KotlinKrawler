@@ -3,8 +3,12 @@ package com.achanr.kotlinkrawler.models
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class BattleInfo(
+data class Battle(
+    val id: Int,
     val name: String,
+    val description: String,
+    val type: String,
+    val attackChance: Double,
     val attack: Int,
     val defense: Int,
     val health: Int,

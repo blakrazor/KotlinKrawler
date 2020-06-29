@@ -55,39 +55,45 @@
           "failureResult": {
             "text": "You walk up to the group of dogs, but they seem aggressive. It seems it is too late to turn back now.",
             "changeInGold": 0,
-            "isBattle": true
+            "battleId": 0
           }
         }
+      ]
+    }
+  ],
+  "battles": [
+    {
+      "id": 0,
+      "name": "Pack of Wild Dogs",
+      "description": "These aren't your ordinary pack of homework eating dogs...",
+      "type": "Somewhat Aggressive",
+      "attackChance": 0.6,
+      "attack": 2,
+      "defense": 2,
+      "health": 20,
+      "reward": 5,
+      "successMessage": "The dogs are quickly dispatched by your overwhelming display. They leave behind some of their scraps which include some gold.",
+      "failureMessage": "You are overwhelmed by the dogs with no chance of escape. What a 'ruff' decision you made.",
+      "strongAttackMessages": [
+        "You get real big and intimidate the dogs which seems to work!",
+        "You throw a stick some distance away and one of the dogs gets distracted.",
+        "You tell the dogs they have been bad boys. This seems to have demoralized them.",
+        "You get down on all fours and act like a dog. The dogs seem to be very confused."
       ],
-      "battleInfo": {
-        "name": "Pack of Wild Dogs",
-        "attack": 2,
-        "defense": 2,
-        "health": 60,
-        "reward": 5,
-        "successMessage": "The dogs are quickly dispatched by your overwhelming display. They leave behind some of their scraps which include some gold.",
-        "failureMessage": "You are overwhelmed by the dogs with no chance of escape. What a 'ruff' decision you made.",
-        "strongAttackMessages": [
-          "You get real big and intimidate the dogs which seems to work!",
-          "You throw a stick some distance away and one of the dogs gets distracted.",
-          "You tell the dogs they have been bad boys. This seems to be demoralized them.",
-          "You get down on all fours and act like a dog. The dogs seem to be very confused."
-        ],
-        "weakAttackMessages": [
-          "You try meow'ing towards the dogs. This seems to have only made them angrier.",
-          "You take some food out of bag and throw it to the dogs. They quickly devour it, but it looks like it only made them stronger.",
-          "You try to kick a dog, but you realize how horrible a decision that would be. So you decide to just give them a stern look.",
-          "You tell the dogs they have been good boys. The dogs don't buy it."
-        ],
-        "strongDefenseMessages": [
-          "You dodge most of their attacks and take minimal damage.",
-          "You use your bag to keep your distance, shielding you from their attacks."
-        ],
-        "weakDefenseMessages": [
-          "You are too slow and one of the dogs is able to bite your arm.",
-          "The dogs quickly outnumber you and you take damage."
-        ]
-      }
+      "weakAttackMessages": [
+        "You try meow'ing towards the dogs. This seems to have only made them angrier.",
+        "You take some food out of bag and throw it to the dogs. They quickly devour it, but it looks like it only made them stronger.",
+        "You try to kick a dog, but you realize how horrible a decision that would be. So you decide to just give them a stern look.",
+        "You tell the dogs they have been good boys. The dogs don't buy it."
+      ],
+      "strongDefenseMessages": [
+        "You dodge most of their attacks and take minimal damage.",
+        "You use your bag to keep your distance, shielding you from their attacks."
+      ],
+      "weakDefenseMessages": [
+        "You are too slow and one of the dogs is able to bite your arm.",
+        "The dogs quickly outnumber you and you take damage."
+      ]
     }
   ]
 }

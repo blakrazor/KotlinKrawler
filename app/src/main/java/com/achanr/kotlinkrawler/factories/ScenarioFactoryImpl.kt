@@ -1,12 +1,15 @@
 package com.achanr.kotlinkrawler.factories
 
 import com.achanr.kotlinkrawler.interfaces.ScenarioFactory
+import com.achanr.kotlinkrawler.models.Battle
 import com.achanr.kotlinkrawler.models.Difficulty
 import com.achanr.kotlinkrawler.models.Scenario
+import com.achanr.kotlinkrawler.models.ScenariosHolder
 import kotlin.random.Random
 
 class ScenarioFactoryImpl : ScenarioFactory {
     private var allScenarios: List<Scenario> = emptyList()
+    private var allBattles: List<Battle> = emptyList()
 
     private val veryEasyScenarios: List<Scenario> by lazy { allScenarios.filter { it.difficulty == Difficulty.VeryEasy } }
     private val easyScenarios: List<Scenario> by lazy { allScenarios.filter { it.difficulty == Difficulty.Easy } }
@@ -14,8 +17,9 @@ class ScenarioFactoryImpl : ScenarioFactory {
     private val hardScenarios: List<Scenario> by lazy { allScenarios.filter { it.difficulty == Difficulty.Hard } }
     private val veryHardScenarios: List<Scenario> by lazy { allScenarios.filter { it.difficulty == Difficulty.VeryHard } }
 
-    override fun initialize(scenarios: List<Scenario>) {
-        allScenarios = scenarios
+    override fun initialize(scenariosHolder: ScenariosHolder) {
+        allScenarios = scenariosHolder.scenarios
+        allBattles = scenariosHolder.battles
     }
 
     override fun createNewScenario(
@@ -60,6 +64,10 @@ class ScenarioFactoryImpl : ScenarioFactory {
                 mediumScenarios
             )
         }
+    }
+
+    override fun getBattleForId(id: Int): Battle {
+        return allBattles.filter { it.id == id }[0]
     }
 
     private fun getProbableScenario(
